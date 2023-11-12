@@ -29,7 +29,8 @@ public class User {
         return phoneNumber;
     }
 
-public String getAddress() {
+    public String getAddress() {
         return address;
     }
+
 }
