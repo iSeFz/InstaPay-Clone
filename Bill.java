@@ -17,7 +17,7 @@ public abstract class Bill {
         return date;
     }
 
-    public Boolean getType() {
+    public Boolean getStatus() {
         return status;
     }
 
@@ -29,5 +29,13 @@ public abstract class Bill {
 
     protected void setAmount(float amount) {
         this.amount = amount;
+    }
+
+    protected void setDate(String date) {
+        this.date = date;
+    }
+
+    protected void setStatus(Boolean status) {
+        this.status = status;
     }
 }
