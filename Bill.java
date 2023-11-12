@@ -27,4 +27,7 @@ public abstract class Bill {
 
     public abstract void deducateBill();
 
+    protected void setAmount(float amount) {
+        this.amount = amount;
+    }
 }
