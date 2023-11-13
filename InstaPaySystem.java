@@ -1,8 +1,43 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
+//new version
 public class InstaPaySystem {
-    private List<InstaPayAccount> accounts;
+    private List<InstaPayAccount> instaPayAccounts;
+    public InstaPaySystem() {
+        instaPayAccounts = new ArrayList<>();
+    }
+    public void addInstaPayAccount(InstaPayAccount instaPayAccount) {
+        instaPayAccounts.add(instaPayAccount);
+    }
+    List<InstaPayAccount> getInstaPayAccount() {
+        return instaPayAccounts;
+    }
+    void Display () {
+        for (InstaPayAccount instaPayAccount : instaPayAccounts) {
+            if (instaPayAccount instanceof InsatPayBankAccount) {
+                System.out.println("Name: " + instaPayAccount.user.getName());
+                System.out.println("Email: " + instaPayAccount.user.getEmail());
+                System.out.println("Phone Number: " + instaPayAccount.user.getPhoneNumber());
+                System.out.println("Address: " + instaPayAccount.user.getAddress());
+                System.out.println("Account Number: " + ((InsatPayBankAccount) instaPayAccount).accountNumber);
+                System.out.println("InstaPay Bank Balance: " + instaPayAccount.balance);
+                System.out.println();
+            } else if (instaPayAccount instanceof InstaPayWallet) {
+                System.out.println("Name: " + instaPayAccount.user.getName());
+                System.out.println("Email: " + instaPayAccount.user.getEmail());
+                System.out.println("Phone Number: " + instaPayAccount.user.getPhoneNumber());
+                System.out.println("Address: " + instaPayAccount.user.getAddress());
+                System.out.println("InstaPay Wallet Balance: " + instaPayAccount.balance);
+                if (instaPayAccount instanceof InstaPayWalletVodafone) {
+                    System.out.println("Type of Wallet: Vodafone");
+                } else if (instaPayAccount instanceof InstaPayWalletEtisalat) {
+                    System.out.println("Type of Wallet: Etisalat");
+                }
+                System.out.println();
+            }
+        }
+    }
     public void runSystem() {
         Scanner sc = new Scanner(System.in);
         System.out.println("\tWelcome to InstaPay Clone!");
