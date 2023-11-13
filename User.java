@@ -1,4 +1,4 @@
-public class User {
+class User {
     private String name;
     private String email;
     private String password;
@@ -32,5 +32,4 @@ public class User {
     public String getAddress() {
         return address;
     }
-
 }
