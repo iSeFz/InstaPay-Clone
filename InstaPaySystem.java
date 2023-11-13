@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
+//new version
 public class InstaPaySystem {
     private List<InstaPayAccount> instaPayAccounts;
     public InstaPaySystem() {
