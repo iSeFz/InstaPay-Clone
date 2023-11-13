@@ -1,16 +1,19 @@
 import java.util.List;
 import java.util.Scanner;
+
 public class InsatPayBankAccount extends InstaPayAccount {
     public String accountNumber;
-    public InsatPayBankAccount(User user, double balance, String accountNumber){
+
+    public InsatPayBankAccount(User user, double balance, String accountNumber) {
         super(user, balance);
-        this.accountNumber=accountNumber;
+        this.accountNumber = accountNumber;
     }
-    public void transferMoney(List<InstaPayAccount> instaPayAccounts ) {
+
+    public void transferMoney(List<InstaPayAccount> instaPayAccounts) {
         System.out.println("Transfer Money Using InstaPay Bank Account");
         int options = 0;
         Scanner sc = new Scanner(System.in);
-        while (true){
+        while (true) {
             System.out.println("0- Exit");
             System.out.println("1- Transfer money to another InstaPay Account");
             System.out.println("2- Transfer money to another Bank Account");
@@ -62,36 +65,66 @@ public class InsatPayBankAccount extends InstaPayAccount {
                 if (!flag)
                     System.out.println("No such InstaPay Account Found");
             } else if (options == 3) {
-                System.out.println("Enter the Mobile Number");
-                String mobileNumber = sc.next();
-                boolean flag = false;
-                for (InstaPayAccount instaPayAccount : instaPayAccounts) {
-                    if (instaPayAccount instanceof InstaPayWallet && instaPayAccount.user.getPhoneNumber().equals(mobileNumber)) {
-                        System.out.println("Enter the amount to transfer");
-                        double amount = sc.nextDouble();
-                        if (amount <= balance) {
-                            balance -= amount;
-                            instaPayAccount.balance += amount;
-                            System.out.println("Money Transfered Successfully");
-                            flag = true;
-                            break;
-                        } else {
-                            System.out.println("Insufficient Balance");
-                            break;
+                System.out.println("0- Exit");
+                System.out.println("1- for transfer money to InstaPay Wallet Vodafone");
+                System.out.println("2- for transfer money to InstaPay Wallet Etisalat");
+                System.out.println("Enter your choice");
+                options = sc.nextInt();
+                if (options == 1) {
+                    System.out.println("Enter the Mobile Number");
+                    String mobileNumber = sc.next();
+                    boolean flag = false;
+                    for (InstaPayAccount instaPayAccount : instaPayAccounts) {
+                        if (instaPayAccount instanceof InstaPayWalletVodafone && instaPayAccount.user.getPhoneNumber().equals(mobileNumber)) {
+                            System.out.println("Enter the amount to transfer");
+                            double amount = sc.nextDouble();
+                            if (amount <= balance) {
+                                balance -= amount;
+                                instaPayAccount.balance += amount;
+                                System.out.println("Money Transfered Successfully");
+                                flag = true;
+                                break;
+                            } else {
+                                System.out.println("Insufficient Balance");
+                                break;
+                            }
                         }
                     }
+                    if (!flag)
+                        System.out.println("No such InstaPay Account Found");
+                } else if (options == 2) {
+                    System.out.println("Enter the Mobile Number");
+                    String mobileNumber = sc.next();
+                    boolean flag = false;
+                    for (InstaPayAccount instaPayAccount : instaPayAccounts) {
+                        if (instaPayAccount instanceof InstaPayWalletEtisalat && instaPayAccount.user.getPhoneNumber().equals(mobileNumber)) {
+                            System.out.println("Enter the amount to transfer");
+                            double amount = sc.nextDouble();
+                            if (amount <= balance) {
+                                balance -= amount;
+                                instaPayAccount.balance += amount;
+                                System.out.println("Money Transfered Successfully");
+                                flag = true;
+                                break;
+                            } else {
+                                System.out.println("Insufficient Balance");
+                                break;
+                            }
+                        }
+                    }
+                    if (!flag)
+                        System.out.println("No such InstaPay Account Found");
+                } else if (options == 0) {
+                    return;
+                } else {
+                    System.out.println("Invalid Option");
+
                 }
-                if (!flag)
-                    System.out.println("No such InstaPay Account Found");
-            }
-            else if (options==0){
+            } else if (options == 0) {
                 return;
-            }
-            else {
+            } else {
                 System.out.println("Invalid Option");
             }
-
         }
-
     }
 }
