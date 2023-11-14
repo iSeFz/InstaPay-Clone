@@ -36,5 +36,5 @@ public abstract class Bill {
 
     public abstract void createBill();
 
-    public abstract void deducateBill();
+    public abstract Boolean deducateBill();
 }
