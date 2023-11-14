@@ -89,7 +89,7 @@ public class InstaPaySystem {
             if (choice.equals("1")) {
                 account.transferMoney(accounts);
             } else if (choice.equals("2")) {
-                account.inquirBalance();
+                account.inquireBalance();
             } else if (choice.equals("3")) {
                 Bill billToPay = null;
                 account.payBill(billToPay);
