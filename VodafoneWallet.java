@@ -44,8 +44,8 @@ public class VodafoneWallet extends WalletAccount {
                 String accountNumber = sc.next();
                 boolean flag = false;
                 for (InstaPayAccount instaPayAccount : instaPayAccounts) {
-                    if (instaPayAccount instanceof InsatPayBankAccount
-                            && ((InsatPayBankAccount) instaPayAccount).accountNumber.equals(accountNumber)) {
+                    if (instaPayAccount instanceof BankAccount
+                            && ((BankAccount) instaPayAccount).accountNumber.equals(accountNumber)) {
                         System.out.println("Enter the amount to transfer");
                         double amount = sc.nextDouble();
                         if (amount <= balance) {
