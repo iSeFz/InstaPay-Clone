@@ -4,6 +4,31 @@ import java.util.Scanner;
 public abstract class Registration {
     public Scanner in = new Scanner(System.in);
     public boolean register(InstaPayAccount user, List<InstaPayAccount> list) {
+        User temp = new User("", "" , "" , "" , "");
+        System.out.println("Register New User:-");
+        if(!verifyAccount(user)){
+            System.out.println("Registration canceled!\n");
+            return false;
+        }
+        if(!verifyEmail(temp)){
+            System.out.println("Registration canceled!\n");
+            return false;
+        }
+        if(!verifyMobilNumber(temp , list)){
+            return false;
+        }
+        if(!verifyName(temp, list)){
+            System.out.println("Registration canceled!\n");
+            return false;
+        }
+
+        if(!verifyPassword(temp)){
+            System.out.println("Registration canceled!\n");
+            return false;
+        }
+        System.out.println("Please Enter Your Address");
+        temp.setAddress(in.nextLine());
+        user.getUser().setUser(temp);
         return true;
     }
     public boolean verifyEmail(User user){
@@ -29,12 +54,14 @@ public abstract class Registration {
             System.out.println("Please Enter Valid Mobile Number or 0 To Cancel Registration:");
             mobile = in.nextLine();
             if(mobile.equals("0")){
+                System.out.println("Registration canceled!\n");
                 return false;
             }
         }
         for(InstaPayAccount account: list){
             if(account.getUser().getPhoneNumber().equals(mobile)){
                 System.out.println("this number was used in another account");
+                System.out.println("Registration failed!");
                 return false;
             }
         }

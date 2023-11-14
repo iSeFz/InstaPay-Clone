@@ -47,4 +47,11 @@ class User {
     public void setAddress(String Address){
         address = Address;
     }
+    public void setUser(User u){
+        name = u.getName();
+        password = u.getPassword();
+        email = u.getEmail();
+        phoneNumber = u.getPhoneNumber();
+        address = u.getAddress();
+    }
 }

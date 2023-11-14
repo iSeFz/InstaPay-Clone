@@ -11,4 +11,11 @@ public abstract class InstaPayAccount {
     public User getUser(){
         return user;
     }
+    public void setUser(User u){
+        user.setName(u.getName());
+        user.setPassword(u.getPassword());
+        user.setEmail(u.getEmail());
+        user.setPhoneNumber(u.getPhoneNumber());
+        user.setAddress(u.getAddress());
+    }
 }
