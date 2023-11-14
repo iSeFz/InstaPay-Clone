@@ -21,12 +21,6 @@ public abstract class Bill {
         return status;
     }
 
-    public abstract void printBill();
-
-    public abstract void createBill();
-
-    public abstract void deducateBill();
-
     protected void setAmount(float amount) {
         this.amount = amount;
     }
@@ -38,4 +32,9 @@ public abstract class Bill {
     protected void setStatus(Boolean status) {
         this.status = status;
     }
+    public abstract void printBill();
+
+    public abstract void createBill();
+
+    public abstract void deducateBill();
 }

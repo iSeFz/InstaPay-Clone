@@ -15,7 +15,7 @@ public class WaterBill extends Bill {
     public void createBill() {
         // generate water bill between 100 and 500
         float amount = (float) (Math.random() * 400 + 100);
-        String date = "2020-10-10";
+        String date = "2023-12-1";
         Boolean status = false;
         setAmount(amount);
         setDate(date);
@@ -25,11 +25,10 @@ public class WaterBill extends Bill {
 
     @Override
     public void deducateBill() {
-        // deducate water bill
         if (getStatus()) {
             System.out.println("Water bill has been deducated");
         } else {
             System.out.println("Water bill has not been deducated");
+        }
     }
-}
 }

@@ -25,6 +25,10 @@ public class GasBill extends Bill {
 
     @Override
     public void deducateBill() {
-        // deduct bill for gas
+        if (getStatus()) {
+            System.out.println("Gas bill has been deducated");
+        } else {
+            System.out.println("Gas bill has not been deducated");
+        }
     }
 }
