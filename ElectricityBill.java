@@ -25,12 +25,10 @@ public class ElectricityBill extends Bill {
 
     @Override
     public void deducateBill() {
-        // deducate electricity bill
         if (getStatus()) {
-            System.out.println("Electricity bill already deducated");
+            System.out.println("Electricity bill has been deducated");
         } else {
-            System.out.println("Electricity bill deducated");
-            setStatus(true);
+            System.out.println("Electricity bill has not been deducated");
+        }
     }
-}
 }
