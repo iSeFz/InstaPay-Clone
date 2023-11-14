@@ -1,4 +1,5 @@
 public class WaterBill extends Bill {
+    public WaterBill() { }
     public WaterBill(float amount, String date, Boolean status) {
         super(amount, date, status);
     }
