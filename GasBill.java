@@ -1,4 +1,5 @@
 public class GasBill extends Bill {
+    public GasBill() { }
     public GasBill(float amount, String date, Boolean status) {
         super(amount, date, status);
     }

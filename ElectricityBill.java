@@ -1,4 +1,5 @@
 public class ElectricityBill extends Bill {
+    public ElectricityBill() { }
     public ElectricityBill(float amount, String date, Boolean status) {
         super(amount, date, status);
     }

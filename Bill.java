@@ -3,6 +3,8 @@ public abstract class Bill {
     private String date;
     private Boolean status;
 
+    public Bill() { }
+
     public Bill(float amount, String date, Boolean status) {
         this.amount = amount;
         this.date = date;
