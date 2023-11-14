@@ -1,7 +1,7 @@
 import java.util.List;
 import java.util.Scanner;
 
-public class BankAccount extends InstaPayAccount {
+public class BankAccount extends Account {
     public String accountNumber;
 
     public BankAccount(User user, double balance, String accountNumber) {
@@ -19,8 +19,7 @@ public class BankAccount extends InstaPayAccount {
         return accountNumber;
     }
 
-
-    public void transferMoney(List<InstaPayAccount> instaPayAccounts) {
+    public void transferMoney(List<Account> instaPayAccounts) {
         System.out.println("Transfer Money Using InstaPay Bank Account");
         int options = 0;
         Scanner sc = new Scanner(System.in);
@@ -35,7 +34,7 @@ public class BankAccount extends InstaPayAccount {
                 System.out.println("Enter the InstapayAccount Name to transfer");
                 String name = sc.next();
                 boolean flag = false;
-                for (InstaPayAccount instaPayAccount : instaPayAccounts) {
+                for (Account instaPayAccount : instaPayAccounts) {
                     if (instaPayAccount.user.getName().equals(name)) {
                         System.out.println("Enter the amount to transfer");
                         double amount = sc.nextDouble();
@@ -57,8 +56,9 @@ public class BankAccount extends InstaPayAccount {
                 System.out.println("Enter the InstapayAccountBankAccount Number");
                 String accountNumber = sc.next();
                 boolean flag = false;
-                for (InstaPayAccount instaPayAccount : instaPayAccounts) {
-                    if (instaPayAccount instanceof BankAccount && ((BankAccount) instaPayAccount).accountNumber.equals(accountNumber)) {
+                for (Account instaPayAccount : instaPayAccounts) {
+                    if (instaPayAccount instanceof BankAccount
+                            && ((BankAccount) instaPayAccount).accountNumber.equals(accountNumber)) {
                         System.out.println("Enter the amount to transfer");
                         double amount = sc.nextDouble();
                         if (amount <= balance) {
@@ -85,8 +85,9 @@ public class BankAccount extends InstaPayAccount {
                     System.out.println("Enter the Mobile Number");
                     String mobileNumber = sc.next();
                     boolean flag = false;
-                    for (InstaPayAccount instaPayAccount : instaPayAccounts) {
-                        if (instaPayAccount instanceof VodafoneWallet && instaPayAccount.user.getPhoneNumber().equals(mobileNumber)) {
+                    for (Account instaPayAccount : instaPayAccounts) {
+                        if (instaPayAccount instanceof VodafoneWallet
+                                && instaPayAccount.user.getPhoneNumber().equals(mobileNumber)) {
                             System.out.println("Enter the amount to transfer");
                             double amount = sc.nextDouble();
                             if (amount <= balance) {
@@ -107,8 +108,9 @@ public class BankAccount extends InstaPayAccount {
                     System.out.println("Enter the Mobile Number");
                     String mobileNumber = sc.next();
                     boolean flag = false;
-                    for (InstaPayAccount instaPayAccount : instaPayAccounts) {
-                        if (instaPayAccount instanceof EtisalatWallet && instaPayAccount.user.getPhoneNumber().equals(mobileNumber)) {
+                    for (Account instaPayAccount : instaPayAccounts) {
+                        if (instaPayAccount instanceof EtisalatWallet
+                                && instaPayAccount.user.getPhoneNumber().equals(mobileNumber)) {
                             System.out.println("Enter the amount to transfer");
                             double amount = sc.nextDouble();
                             if (amount <= balance) {

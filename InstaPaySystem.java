@@ -3,52 +3,15 @@ import java.util.List;
 import java.util.Scanner;
 
 public class InstaPaySystem {
-    private List<InstaPayAccount> accounts;
+    private List<Account> accounts;
 
     public InstaPaySystem() {
         accounts = new ArrayList<>();
     }
 
-    /* ##### For TESTING Purposes #####
-    private List<InstaPayAccount> instaPayAccounts;
-    public InstaPaySystem() {
-        instaPayAccounts = new ArrayList<>();
-    }
-    public void addInstaPayAccount(InstaPayAccount instaPayAccount) {
-        instaPayAccounts.add(instaPayAccount);
-    }
-    List<InstaPayAccount> getInstaPayAccount() {
-        return instaPayAccounts;
-    }
-    void Display () {
-        for (InstaPayAccount instaPayAccount : instaPayAccounts) {
-            if (instaPayAccount instanceof InsatPayBankAccount) {
-                System.out.println("Name: " + instaPayAccount.user.getName());
-                System.out.println("Email: " + instaPayAccount.user.getEmail());
-                System.out.println("Phone Number: " + instaPayAccount.user.getPhoneNumber());
-                System.out.println("Address: " + instaPayAccount.user.getAddress());
-                System.out.println("Account Number: " + ((InsatPayBankAccount) instaPayAccount).accountNumber);
-                System.out.println("InstaPay Bank Balance: " + instaPayAccount.balance);
-                System.out.println();
-            } else if (instaPayAccount instanceof InstaPayWallet) {
-                System.out.println("Name: " + instaPayAccount.user.getName());
-                System.out.println("Email: " + instaPayAccount.user.getEmail());
-                System.out.println("Phone Number: " + instaPayAccount.user.getPhoneNumber());
-                System.out.println("Address: " + instaPayAccount.user.getAddress());
-                System.out.println("InstaPay Wallet Balance: " + instaPayAccount.balance);
-                if (instaPayAccount instanceof InstaPayWalletVodafone) {
-                    System.out.println("Type of Wallet: Vodafone");
-                } else if (instaPayAccount instanceof InstaPayWalletEtisalat) {
-                    System.out.println("Type of Wallet: Etisalat");
-                }
-                System.out.println();
-            }
-        }
-    } */
-
     // NOTE: This violates the OCP, but it was done for better readability
     // Registration helper method for more readable code
-    private void registrationHelper(InstaPayAccount account, List<InstaPayAccount> accounts) {
+    private void registrationHelper(Account account, List<Account> accounts) {
         Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.println("Which account type do you want to register?\n" +
@@ -61,13 +24,15 @@ public class InstaPaySystem {
                 if (newBankAccount.register(account, accounts)) {
                     subMenu(account);
                     break;
-                } else break;
+                } else
+                    break;
             } else if (accountType.equals("2")) {
                 RegistrationMobileWallet newWalletAccount = new RegistrationMobileWallet();
                 if (newWalletAccount.register(account, accounts)) {
                     subMenu(account);
                     break;
-                } else break;
+                } else
+                    break;
             } else {
                 System.err.println("\n\tINVALID CHOICE");
             }
@@ -76,7 +41,7 @@ public class InstaPaySystem {
     }
 
     // Sub menu that appear after logging in to a certain account
-    private void subMenu(InstaPayAccount account) {
+    private void subMenu(Account account) {
         System.out.println("\tWelcome " + account.user.getName() + " to InstaPay Clone!");
         Scanner sc = new Scanner(System.in);
         while (true) {
@@ -105,7 +70,7 @@ public class InstaPaySystem {
     // Main menu that appear at the start of the program
     public void runSystem() {
         Scanner sc = new Scanner(System.in);
-        InstaPayAccount account = null;
+        Account account = null;
         System.out.println("\tWelcome to InstaPay Clone!");
         while (true) {
             System.out.println("\n1. Register a new account\n" +

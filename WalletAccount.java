@@ -1,6 +1,6 @@
 import java.util.List;
 
-abstract class WalletAccount extends InstaPayAccount {
+abstract class WalletAccount extends Account {
     public WalletAccount(User user, double balance) {
         super(user, balance);
     }
@@ -13,5 +13,5 @@ abstract class WalletAccount extends InstaPayAccount {
         return null;
     }
 
-    public abstract void transferMoney(List<InstaPayAccount> instaPayAccounts);
+    public abstract void transferMoney(List<Account> instaPayAccounts);
 }
