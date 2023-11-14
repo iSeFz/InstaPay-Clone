@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Scanner;
 
 public abstract class InstaPayAccount {
     User user;
@@ -22,4 +23,33 @@ public abstract class InstaPayAccount {
         user.setPhoneNumber(u.getPhoneNumber());
         user.setAddress(u.getAddress());
     }
+
+    public void inquirBalance(){
+        System.out.println("Your Current Balance is: " + this.balance);
+    }
+
+    public void payBill(Bill bill) {
+        System.out.println("Pay Bill Using InstaPay Account");
+        System.out.println("You have Bill with Amount: " + bill.getAmount());
+        Boolean check = bill.deducateBill();
+
+        if (!check) {
+            System.out.println("Do You Want to Pay the Bill? (Y/N)");
+            Scanner input = new Scanner(System.in);
+            String choice = input.nextLine();
+
+            if (choice.equals("Y") || choice.equals("y")) {
+                if (bill.getAmount() <= this.balance) {
+                    this.balance -= bill.getAmount();
+                    bill.setStatus(false);
+                    System.out.println("Bill Paid Successfully");
+                } else {
+                    System.out.println("Insufficient Balance");
+                }
+            } else {
+                System.out.println("Bill Not Paid");
+            }
+        }
+    }
+
 }
