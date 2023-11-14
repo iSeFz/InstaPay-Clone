@@ -10,6 +10,7 @@ public abstract class InstaPayAccount {
     // this function to set account number in bank account  case
     // and set mobile number of wallet in mobile wallet case
     abstract public void setbase(String number);
+    abstract public String getbase();// to return account bank number or mobile wallet number
     abstract public void transferMoney(List<InstaPayAccount> instaPayAccounts );
     public User getUser(){
         return user;

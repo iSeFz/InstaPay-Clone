@@ -6,8 +6,7 @@ public abstract class Registration {
     public boolean register(InstaPayAccount user, List<InstaPayAccount> list) {
         User temp = new User("", "" , "" , "" , "");
         System.out.println("Register New User:-");
-        if(!verifyAccount(user)){
-            System.out.println("Registration canceled!\n");
+        if(!verifyAccount(user ,  list)){
             return false;
         }
         if(!verifyEmail(temp)){
@@ -45,7 +44,7 @@ public abstract class Registration {
         user.setEmail(mail);
         return true;
     }
-    abstract public boolean verifyAccount(InstaPayAccount user);
+    abstract public boolean verifyAccount(InstaPayAccount user , List<InstaPayAccount> list);
     public boolean verifyMobilNumber(User user , List<InstaPayAccount> list){
         String mobile;
         System.out.println("Please Enter Your Phone Number:");
@@ -75,6 +74,7 @@ public abstract class Registration {
             System.out.println("Please Enter correct OTP or 0 to Cancel Registration:");
             Otp = in.nextLine();
             if(Otp.equals("0")){
+                System.out.println("Registration canceled!\n");
                 return false;
             }
         }
@@ -111,7 +111,7 @@ public abstract class Registration {
 }
 class RegistrationBankAccount extends Registration {
     @Override
-    public boolean verifyAccount(InstaPayAccount user){
+    public boolean verifyAccount(InstaPayAccount user , List<InstaPayAccount> list){
         String AccountNumber;
         System.out.println("Please Enter Account Number Or 0 to Cancel Registration:");
         AccountNumber = in.nextLine();
@@ -123,6 +123,12 @@ class RegistrationBankAccount extends Registration {
             if(AccountNumber.equals("0"))
                 return false;
         }
+        for(InstaPayAccount acc : list){
+            if(acc.getbase().equals(AccountNumber)){
+                System.out.println("this Bank account was used\nRegistration failed!");
+                return false;
+            }
+        }
         user.setbase(AccountNumber);
         return true;
     }
@@ -131,7 +137,35 @@ class RegistrationBankAccount extends Registration {
 
 class RegistrationMobileWallet extends Registration {
     @Override
-    public boolean verifyAccount(InstaPayAccount user){
+    public boolean verifyAccount(InstaPayAccount user , List<InstaPayAccount> list) {
+        String Mobile;
+        System.out.println("Please Enter Mobil Number that has the wallet or 0 To Cancel Registration:");
+        Mobile = in.nextLine();
+        if(Mobile.equals("0")){
+            System.out.println("Registration canceled!\n");
+            return false;
+        }
+        while(!Mobile.matches("^01[0125]\\d{8}$")){
+            System.out.println("It is invalid Account Number\nPlease Enter valid Number or 0 To Cancel Registration:");
+            Mobile = in.nextLine();
+            if(Mobile.equals("0")) {
+                System.out.println("Registration canceled!\n");
+                return false;
+            }
+        }
+        for(InstaPayAccount account: list){
+            if(account.getUser().getPhoneNumber().equals(Mobile)){
+                System.out.println("this number was used in another account");
+                System.out.println("Registration failed!");
+                return false;
+            }
+        }
+        user.getUser().setPhoneNumber(Mobile);
+        user.setbase(Mobile);
+        return true;
+    }
+    @Override
+    public boolean verifyMobilNumber(User user , List<InstaPayAccount> list){
         return true;
     }
 

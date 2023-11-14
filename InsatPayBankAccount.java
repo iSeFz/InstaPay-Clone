@@ -14,6 +14,12 @@ public class InsatPayBankAccount extends InstaPayAccount {
         accountNumber = number;
     }
 
+    @Override
+    public String getbase() {
+        return accountNumber;
+    }
+
+
     public void transferMoney(List<InstaPayAccount> instaPayAccounts) {
         System.out.println("Transfer Money Using InstaPay Bank Account");
         int options = 0;
