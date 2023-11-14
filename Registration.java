@@ -55,9 +55,30 @@ public abstract class Registration {
         return true;
     }
     public boolean verifyPassword(User user){
+        String password;
+        System.out.print("Please Enter Your Password");
+        password = in.nextLine();
+        while(!password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$")){
+            System.out.print("This Password was weak\nStrong password should contain:\nlower case character\nupper case character \nnumbers\nPlease Enter Strong Password Or 0 to cancel:");
+            password = in.nextLine();
+            if(password.equals("0"))
+                return false;
+        }
+        user.setPassword(password);
         return true;
     }
     public boolean verifyName(User user , List<InstaPayAccount> list){
+        System.out.println("Please Enter unique Name or 0 To Cancel Registration:");
+        String name = in.nextLine();
+        if(name.equals("0"))
+            return false;
+        for(InstaPayAccount a : list){
+            if(name.equals(a.getUser().getName())){
+                System.out.print("this name was used\n");
+                return verifyName(user , list);
+            }
+        }
+        user.setName(name);
         return true;
     }
 }
