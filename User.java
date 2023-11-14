@@ -32,4 +32,7 @@ class User {
     public String getAddress() {
         return address;
     }
+    public void setEmail(String Email){
+        email = Email;
+    }
 }
