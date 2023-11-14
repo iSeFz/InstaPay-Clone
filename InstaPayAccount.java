@@ -24,11 +24,15 @@ public abstract class InstaPayAccount {
         user.setAddress(u.getAddress());
     }
 
-    public void inquirBalance(){
+    public void inquireBalance(){
         System.out.println("Your Current Balance is: " + this.balance);
     }
 
     public void payBill(Bill bill) {
+        if (bill == null) {
+            System.out.println("There is No Bill to Pay");
+            return;
+        }
         System.out.println("Pay Bill Using InstaPay Account");
         System.out.println("You have Bill with Amount: " + bill.getAmount());
         Boolean check = bill.deducateBill();
