@@ -112,6 +112,18 @@ public abstract class Registration {
 class RegistrationBankAccount extends Registration {
     @Override
     public boolean verifyAccount(InstaPayAccount user){
+        String AccountNumber;
+        System.out.println("Please Enter Account Number Or 0 to Cancel Registration:");
+        AccountNumber = in.nextLine();
+        if(AccountNumber.equals("0"))
+            return false;
+        while(AccountNumber.length() != 12){
+            System.out.println("It is invalid Account Number\nPlease Enter valid Number or 0 to Cancel Registration:");
+            AccountNumber = in.nextLine();
+            if(AccountNumber.equals("0"))
+                return false;
+        }
+        user.setbase(AccountNumber);
         return true;
     }
 

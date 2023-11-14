@@ -6,6 +6,7 @@ public class InstaPayWalletEtisalat extends InstaPayWallet {
         super(user, balance);
     }
 
+
     public void transferMoney(List<InstaPayAccount> instaPayAccounts) {
         System.out.println("Transfer Money Using InstaPay Wallet Etisalat");
         int options = 0;

@@ -6,6 +6,7 @@ public class InstaPayWalletVodafone extends InstaPayWallet {
         super(user, balance);
     }
 
+
     public void transferMoney(List<InstaPayAccount> instaPayAccounts) {
         System.out.println("Transfer Money Using InstaPay Wallet Vodafone");
         int options = 0;
