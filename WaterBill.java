@@ -26,7 +26,7 @@ public class WaterBill extends Bill {
 
     @Override
     public Boolean deducateBill() {
-        if (getStatus()) {
+        if (!getStatus()) {
             System.out.println("Water bill has been deducated");
             return true;
         } else {
