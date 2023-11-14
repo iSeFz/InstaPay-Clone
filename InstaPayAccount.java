@@ -8,4 +8,7 @@ public abstract class InstaPayAccount {
         this.balance = balance;
     }
     abstract public void transferMoney(List<InstaPayAccount> instaPayAccounts );
+    public User getUser(){
+        return user;
+    }
 }

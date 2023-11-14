@@ -21,7 +21,7 @@ public abstract class Registration {
         return true;
     }
     abstract public boolean verifyAccount(InstaPayAccount user);
-    public boolean verifyMobilNumber(User user){
+    public boolean verifyMobilNumber(User user , List<InstaPayAccount> list){
         String mobile;
         System.out.println("Please Enter Your Phone Number:");
         mobile = in.nextLine();
@@ -29,6 +29,12 @@ public abstract class Registration {
             System.out.println("Please Enter Valid Mobile Number or 0 To Cancel Registration:");
             mobile = in.nextLine();
             if(mobile.equals("0")){
+                return false;
+            }
+        }
+        for(InstaPayAccount account: list){
+            if(account.getUser().getPhoneNumber().equals(mobile)){
+                System.out.println("this number was used in another account");
                 return false;
             }
         }
