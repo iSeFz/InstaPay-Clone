@@ -33,7 +33,7 @@ public abstract class InstaPayAccount {
         System.out.println("You have Bill with Amount: " + bill.getAmount());
         Boolean check = bill.deducateBill();
 
-        if (!check) {
+        if (check) {
             System.out.println("Do You Want to Pay the Bill? (Y/N)");
             Scanner input = new Scanner(System.in);
             String choice = input.nextLine();
