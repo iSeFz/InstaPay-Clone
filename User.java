@@ -35,4 +35,16 @@ class User {
     public void setEmail(String Email){
         email = Email;
     }
+    public void setName(String Name){
+        name = Name;
+    }
+    public void setPhoneNumber(String Phone){
+        phoneNumber = Phone;
+    }
+    public void setPassword(String Password){
+        password = Password;
+    }
+    public void setAddress(String Address){
+        address = Address;
+    }
 }
