@@ -9,7 +9,8 @@ class BankTransfer implements TransferMoney {
         while (true) {
             System.out.println("0- Exit");
             System.out.println("1- Transfer money to another InstaPay Account");
-            System.out.println("2- Transfer money to Mobile Wallet");
+            System.out.println("2- Transfer money to another Bank Account");
+            System.out.println("3- Transfer money to Mobile Wallet");
             System.out.println("Enter your choice");
             choice = scanner.nextInt();
             if (choice == 0) {
@@ -35,7 +36,31 @@ class BankTransfer implements TransferMoney {
                 if (!flag) {
                     System.out.println("No such InstaPay Account");
                 }
-            } else if (choice == 2) {
+            }else if (choice == 2) {
+                System.out.println("Enter the Bank Account Number");
+                String accountNumber = scanner.next();
+                Boolean flag = false;
+                for (Account instaPayAccount : instaPayAccounts) {
+                    if (instaPayAccount instanceof BankAccount) {
+                        BankAccount insatPayBankAccount = (BankAccount) instaPayAccount;
+                        if (insatPayBankAccount.accountNumber.equals(accountNumber)) {
+                            System.out.println("Enter the amount");
+                            double amount = scanner.nextDouble();
+                            flag = true;
+                            if (amount > user.balance && amount > 0) {
+                                System.out.println("Insufficient Balance");
+                            } else {
+                                user.balance -= amount;
+                                insatPayBankAccount.balance += amount;
+                                System.out.println("Money Transferred Successfully");
+                            }
+                        }
+                    }
+                }
+                if (!flag) {
+                    System.out.println("No such Bank Account");
+                }
+            } else if (choice == 3) {
                 Boolean flag = false;
                 while (true) {
                     System.out.println("Enter 0-Break 1 for Etisalat Wallet ar 2 for Vodafone Wallet");

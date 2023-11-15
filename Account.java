@@ -65,7 +65,7 @@ public abstract class Account {
         System.out.println("You have " + bills.size() + " Bills: ");
         System.out.println("=====================================");
         for (int i = 0; i < bills.size(); i++) {
-            System.out.println(i + 1 + ". " + bills.get(i).getClass().getName());
+            System.out.println(i + 1 + ". " + bills.get(i).getClass().getName() + " " + bills.get(i).getAmount());
         }
         System.out.println("=====================================");
 

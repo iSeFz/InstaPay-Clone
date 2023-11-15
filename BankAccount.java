@@ -18,6 +18,7 @@ class BankAccount extends Account {
     }
 
     public void transferMoney(List<Account> instaPayAccounts) {
+        this.setTransferMoney(new BankTransfer());
         this.transferMoney.transferMoney(instaPayAccounts,this);
     }
 

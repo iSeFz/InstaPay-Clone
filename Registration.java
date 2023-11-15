@@ -171,6 +171,28 @@ class RegistrationMobileWallet extends Registration {
             System.out.println("invalid provider!");
             return false;
         }
+        switch (ch) {
+            case '0':
+                user = new VodafoneWallet(user.getUser(), 100);
+                break;
+            case '1':
+                user = new EtisalatWallet(user.getUser(), 100);
+                break;
+        }
+        String Otp;
+        OTP otp = new OTP();
+        otp.generateOTP();
+        otp.sendOTP();
+        System.out.println("Please Enter Otp recently send:");
+        Otp = in.nextLine();
+        while (!otp.verifyOTP(Otp)) {
+            System.out.println("Please Enter correct OTP or 0 to Cancel Registration:");
+            Otp = in.nextLine();
+            if (Otp.equals("0")) {
+                System.out.println("Registration canceled!\n");
+                return false;
+            }
+        }
         user.getUser().setPhoneNumber(Mobile);
         user.setbase(Mobile);
         return true;
@@ -183,15 +205,15 @@ class RegistrationMobileWallet extends Registration {
 
     @Override
     public Account adding(User user) {
-        Account temp = null;
-        switch (ch) {
+        Account temp = new VodafoneWallet(user, 100);
+        /*switch (ch) {
             case '0':
                 temp = new VodafoneWallet(user, 100);
                 break;
             case '1':
                 temp = new EtisalatWallet(user, 100);
                 break;
-        }
+        }*/
         return temp;
     }
 

@@ -11,13 +11,13 @@ public class Login {
         String username = sc.nextLine();
         loggedIn = checkUsername(username, accounts);
         if (loggedIn == null) {
-            sc.close();
+            //sc.close();
             return null;
         }
         System.out.print("Enter your password: ");
         String password = sc.nextLine();
         loggedIn = checkPassword(password, loggedIn);
-        sc.close();
+        //sc.close();
         return loggedIn;
     }
 

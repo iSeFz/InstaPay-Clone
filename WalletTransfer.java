@@ -9,8 +9,7 @@ class WalletTransfer implements TransferMoney {
         while (true) {
             System.out.println("0- Exit");
             System.out.println("1- Transfer money to another InstaPay Account");
-            System.out.println("2- Transfer money to another Bank Account");
-            System.out.println("3- Transfer money to Mobile Wallet");
+            System.out.println("2- Transfer money to Mobile Wallet");
             System.out.println("Enter your choice");
             choice = scanner.nextInt();
             if (choice == 0) {
@@ -21,6 +20,10 @@ class WalletTransfer implements TransferMoney {
                 Boolean flag = false;
                 for (Account instaPayAccount : instaPayAccounts) {
                     if (instaPayAccount.user.getName().equals(name)) {
+                        if ((instaPayAccount instanceof BankAccount)) {
+                            System.out.println("Can't transfer money to Bank Account");
+                            return;
+                        }
                         System.out.println("Enter the amount");
                         double amount = scanner.nextDouble();
                         flag = true;
@@ -36,7 +39,7 @@ class WalletTransfer implements TransferMoney {
                 if (!flag) {
                     System.out.println("No such InstaPay Account");
                 }
-            } else if (choice == 2) {
+            } /*else if (choice == 2) {
                 System.out.println("Enter the Bank Account Number");
                 String accountNumber = scanner.next();
                 Boolean flag = false;
@@ -60,7 +63,7 @@ class WalletTransfer implements TransferMoney {
                 if (!flag) {
                     System.out.println("No such Bank Account");
                 }
-            } else if (choice == 3) {
+            } */else if (choice == 2) {
                 Boolean flag = false;
                 while (true) {
                     System.out.println("Enter 0-Break 1 for Etisalat Wallet ar 2 for Vodafone Wallet");
