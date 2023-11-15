@@ -38,5 +38,13 @@ public abstract class Bill {
 
     public abstract void createBill();
 
-    public abstract Boolean deducateBill();
+    public  Boolean deducateBill() {
+        if (!getStatus()) {
+            System.out.println("Bill has been deducated");
+            return true;
+        } else {
+            System.out.println("Bill has not been deducated");
+            return false;
+        }
+    }
 }
