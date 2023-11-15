@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -5,6 +6,7 @@ public abstract class Account {
     User user;
     double balance;
     TransferMoney transferMoney;
+    List<Bill> bills = new ArrayList<Bill>();
 
     public Account(User user, double balance) {
         this.user = user;
@@ -35,36 +37,56 @@ public abstract class Account {
         user.setAddress(u.getAddress());
     }
 
+    public void setBill(Bill bill) {
+        if (bill == null) {
+            System.out.println("Bill is null");
+            return;
+        }
+        else
+            bills.add(bill);
+    }
+
+    public void printBills() {
+        for (Bill bill : bills) {
+            bill.printBill();
+        }
+    }
+
+    public Bill getBill(int index) {
+        return bills.get(index);
+    }
+
     public void inquireBalance() {
         System.out.println("Your Current Balance is: " + this.balance);
     }
 
-    public void payBill(Bill bill) {
-        if (bill == null) {
-            System.out.println("There is No Bill to Pay");
-            return;
-        }
+    public void payBill() {
         System.out.println("Pay Bill Using InstaPay Account");
-        System.out.println("You have Bill with Amount: " + bill.getAmount());
-        Boolean check = bill.deducateBill();
+        System.out.println("You have " + bills.size() + " Bills: ");
+        System.out.println("=====================================");
+        for (int i = 0; i < bills.size(); i++) {
+            System.out.println(i + 1 + ". " + bills.get(i).getClass().getName());
+        }
+        System.out.println("=====================================");
 
-        if (check) {
-            System.out.println("Do You Want to Pay the Bill? (Y/N)");
-            Scanner input = new Scanner(System.in);
-            String choice = input.nextLine();
+        System.out.println("Do You want to Pay Bill? (Y/N)");
+        Scanner input = new Scanner(System.in);
+        String choice = input.nextLine();
 
-            if (choice.equals("Y") || choice.equals("y")) {
-                if (bill.getAmount() <= this.balance) {
-                    this.balance -= bill.getAmount();
-                    bill.setStatus(false);
-                    System.out.println("Bill Paid Successfully");
-                } else {
-                    System.out.println("Insufficient Balance");
-                }
+        if (choice.equals("Y") || choice.equals("y")) {
+            System.out.println("Enter Bill Number: ");
+            int billNumber = input.nextInt();
+            Bill bill = bills.get(billNumber - 1);
+            if (bill.getAmount() <= this.balance) {
+                this.balance -= bill.getAmount();
+                bill.setStatus(false);
+                System.out.println("Bill Paid Successfully");
             } else {
-                System.out.println("Bill Not Paid");
+                System.out.println("Insufficient Balance");
             }
-            input.close();
+        } else {
+            System.out.println("Bill Not Paid");
         }
     }
 }
+

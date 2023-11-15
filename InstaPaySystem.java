@@ -57,7 +57,7 @@ public class InstaPaySystem {
                 account.inquireBalance();
             } else if (choice.equals("3")) {
                 Bill billToPay = null;
-                account.payBill(billToPay);
+                account.payBill(billToPay); // Here Must be Modified ==> Talk With Mostafa
             } else if (choice.equals("4")) {
                 break;
             } else {
