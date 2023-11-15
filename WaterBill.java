@@ -24,14 +24,4 @@ public class WaterBill extends Bill {
         System.out.println("Water bill created");
     }
 
-    @Override
-    public Boolean deducateBill() {
-        if (!getStatus()) {
-            System.out.println("Water bill has been deducated");
-            return true;
-        } else {
-            System.out.println("Water bill has not been deducated");
-            return false;
-        }
-    }
 }

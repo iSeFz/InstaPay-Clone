@@ -24,14 +24,4 @@ public class GasBill extends Bill {
         System.out.println("Gas bill created");
     }
 
-    @Override
-    public Boolean deducateBill() {
-        if (!getStatus()) {
-            System.out.println("Gas bill has been deducated");
-            return true;
-        } else {
-            System.out.println("Gas bill has not been deducated");
-            return false;
-        }
-    }
 }

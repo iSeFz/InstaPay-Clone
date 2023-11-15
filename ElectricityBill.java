@@ -24,14 +24,4 @@ public class ElectricityBill extends Bill {
         System.out.println("Electricity bill created");
     }
 
-    @Override
-    public Boolean deducateBill() {
-        if (!getStatus()) {
-            System.out.println("Electricity bill has been deducated");
-            return true;
-        } else {
-            System.out.println("Electricity bill has not been deducated");
-            return false;
-        }
-    }
 }
