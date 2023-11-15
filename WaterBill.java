@@ -1,5 +1,7 @@
 public class WaterBill extends Bill {
-    public WaterBill() { }
+    public WaterBill() {
+    }
+
     public WaterBill(float amount, String date, Boolean status) {
         super(amount, date, status);
     }
@@ -21,7 +23,5 @@ public class WaterBill extends Bill {
         setAmount(amount);
         setDate(date);
         setStatus(status);
-        System.out.println("Water bill created");
     }
-
 }

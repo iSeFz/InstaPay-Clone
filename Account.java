@@ -61,7 +61,7 @@ public abstract class Account {
     }
 
     public void payBill() {
-        System.out.println("Pay Bill Using InstaPay Account");
+        System.out.println("\n\tPay Bill Using InstaPay Account");
         System.out.println("You have " + bills.size() + " Bills: ");
         System.out.println("=====================================");
         for (int i = 0; i < bills.size(); i++) {
@@ -69,12 +69,12 @@ public abstract class Account {
         }
         System.out.println("=====================================");
 
-        System.out.println("Do You want to Pay Bill? (Y/N)");
+        System.out.print("Do You want to Pay Bill? (Y/N) ");
         Scanner input = new Scanner(System.in);
         String choice = input.nextLine();
 
         if (choice.equals("Y") || choice.equals("y")) {
-            System.out.println("Enter Bill Number: ");
+            System.out.print("Enter Bill Number: ");
             int billNumber = input.nextInt();
             Bill bill = bills.get(billNumber - 1);
             if (bill.getAmount() <= this.balance) {

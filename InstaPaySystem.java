@@ -70,7 +70,7 @@ public class InstaPaySystem {
         String choice = "";
         Account account = null;
         System.out.println("\tWelcome to InstaPay Clone!");
-        while (!choice.equals("3")) {
+        while (true) {
             System.out.println("\n1. Register a new account\n" +
                     "2. Login into existing account\n" +
                     "3. Exit");
@@ -93,6 +93,8 @@ public class InstaPaySystem {
                 } else {
                     System.err.println("\tNo account found, Register a new account first!");
                 }
+            } else if (choice.equals("3")) {
+                break;
             } else {
                 System.err.println("\n\tINVALID CHOICE");
             }

@@ -1,5 +1,7 @@
 public class GasBill extends Bill {
-    public GasBill() { }
+    public GasBill() {
+    }
+
     public GasBill(float amount, String date, Boolean status) {
         super(amount, date, status);
     }
@@ -21,7 +23,5 @@ public class GasBill extends Bill {
         setAmount(amount);
         setDate(date);
         setStatus(status);
-        System.out.println("Gas bill created");
     }
-
 }

@@ -1,5 +1,7 @@
 public class ElectricityBill extends Bill {
-    public ElectricityBill() { }
+    public ElectricityBill() {
+    }
+
     public ElectricityBill(float amount, String date, Boolean status) {
         super(amount, date, status);
     }
@@ -21,7 +23,5 @@ public class ElectricityBill extends Bill {
         setAmount(amount);
         setDate(date);
         setStatus(status);
-        System.out.println("Electricity bill created");
     }
-
 }
