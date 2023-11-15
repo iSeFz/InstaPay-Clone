@@ -4,10 +4,15 @@ import java.util.Scanner;
 public abstract class Account {
     User user;
     double balance;
+    TransferMoney transferMoney;
 
     public Account(User user, double balance) {
         this.user = user;
         this.balance = balance;
+    }
+
+    public void setTransferMoney(TransferMoney transferMoney) {
+        this.transferMoney = transferMoney;
     }
 
     // this function to set account number in bank account case
