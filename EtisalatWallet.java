@@ -6,6 +6,7 @@ class EtisalatWallet extends WalletAccount {
         super(user, balance);
     }
     public void transferMoney(List<Account> instaPayAccounts) {
+        this.setTransferMoney(new WalletTransfer());
         this.transferMoney.transferMoney(instaPayAccounts,this);
     }
 }

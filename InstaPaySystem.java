@@ -27,7 +27,7 @@ public class InstaPaySystem {
                 System.err.println("\n\tINVALID CHOICE");
             }
         }
-        sc.close();
+        //sc.close();
         // If the registration was successfull
         // Add the user to the list of accounts stored on the system
         if (account != null) {
@@ -54,9 +54,9 @@ public class InstaPaySystem {
             } else if (choice.equals("2")) {
                 account.inquireBalance();
             } else if (choice.equals("3")) {
-                account.payBill(); // Here Must be Modified ==> Talk With Mostafa
+                account.payBill();
             } else if (choice.equals("4")) {
-                sc.close();
+                //sc.close();
                 break;
             } else {
                 System.err.println("\n\tINVALID CHOICE");
@@ -79,14 +79,14 @@ public class InstaPaySystem {
             if (choice.equals("1")) {
                 System.out.println("\n\tRegistering a new account");
                 registrationHelper();
-                break;
+                //break;
             } else if (choice.equals("2")) {
                 if (accounts != null) {
                     Login loginObj = new Login();
                     account = loginObj.login(accounts);
                     if (account != null) {
                         subMenu(account);
-                        break;
+                        //break;
                     } else {
                         System.err.println("\n\tLogin Failed!");
                     }
@@ -98,7 +98,7 @@ public class InstaPaySystem {
             }
         }
         System.out.println("\tThank you for using InstaPay Clone!");
-        sc.close();
+        //sc.close();
     }
 
     public static void main(String[] args) {
