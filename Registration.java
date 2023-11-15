@@ -7,6 +7,9 @@ public abstract class Registration {
     public boolean register(Account user, List<Account> list) {
         User temp = new User("", "", "", "", "");
         System.out.println("Register New User:-");
+        if(user == null){
+            user = adding(temp);
+        }
         if (!verifyAccount(user, list)) {
             return false;
         }
@@ -48,6 +51,7 @@ public abstract class Registration {
     }
 
     abstract public boolean verifyAccount(Account user, List<Account> list);
+    abstract public Account adding(User user);
 
     public boolean verifyMobilNumber(User user, List<Account> list) {
         String mobile;
@@ -140,10 +144,16 @@ class RegistrationBankAccount extends Registration {
         user.setbase(AccountNumber);
         return true;
     }
+    @Override
+    public Account adding(User user) {
+        Account temp = new BankAccount(user,0, "BankAccount");
+        return temp;
+    }
 
 }
 
 class RegistrationMobileWallet extends Registration {
+    private char ch;
     @Override
     public boolean verifyAccount(Account user, List<Account> list) {
         String Mobile;
@@ -168,6 +178,11 @@ class RegistrationMobileWallet extends Registration {
                 return false;
             }
         }
+        ch = Mobile.charAt(2);
+        if(ch != '1' && ch != '0'){
+            System.out.println("invalid provider!");
+            return false;
+        }
         user.getUser().setPhoneNumber(Mobile);
         user.setbase(Mobile);
         return true;
@@ -176,6 +191,18 @@ class RegistrationMobileWallet extends Registration {
     @Override
     public boolean verifyMobilNumber(User user, List<Account> list) {
         return true;
+    }
+    @Override
+    public Account adding(User user) {
+        Account temp = null;
+        switch (ch){
+            case '0':
+                temp = new VodafoneWallet(user , 0);
+                break;
+            case '1': temp = new EtisalatWallet(user , 0);
+                      break;
+        }
+        return temp;
     }
 
 }
