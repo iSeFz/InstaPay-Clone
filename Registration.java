@@ -4,53 +4,39 @@ import java.util.Scanner;
 public abstract class Registration {
     public Scanner in = new Scanner(System.in);
 
-    public boolean register(Account user, List<Account> list) {
-        User temp = new User("", "", "", "", "");
-        System.out.println("Register New User:-");
-        if(user == null){
-            user = adding(temp);
+    public Account register(List<Account> list) {
+        System.out.println("\n\tRegister New InstaPay Account");
+        User newUser = new User("", "", "", "", "");
+        // Store the created account in a variable to return later
+        Account newAccount = adding(newUser);
+        // Continue check for remaining user data
+        if (!verifyAccount(newAccount, list)) {
+            return null;
+        } if (!verifyMobilNumber(newUser, list)) {
+            return null;
+        } if (!verifyName(newUser, list)) {
+            return null;
+        } if (!verifyPassword(newUser)) {
+            return null;
         }
-        if (!verifyAccount(user, list)) {
-            return false;
-        }
-        if (!verifyEmail(temp)) {
-            System.out.println("Registration canceled!\n");
-            return false;
-        }
-        if (!verifyMobilNumber(temp, list)) {
-            return false;
-        }
-        if (!verifyName(temp, list)) {
-            System.out.println("Registration canceled!\n");
-            return false;
-        }
-
-        if (!verifyPassword(temp)) {
-            System.out.println("Registration canceled!\n");
-            return false;
-        }
-        System.out.println("Please Enter Your Address");
-        temp.setAddress(in.nextLine());
-        user.getUser().setUser(temp);
-        return true;
-    }
-
-    public boolean verifyEmail(User user) {
-        String mail;
-        System.out.println("Please Enter You Email");
-        mail = in.nextLine();
-        while (!mail.matches("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
-            System.out.println("Invalid Email\nPlease Enter valid mail or 0 to cancel:");
-            mail = in.nextLine();
-            if (mail.equals("0")) {
-                return false;
-            }
-        }
-        user.setEmail(mail);
-        return true;
+        // Set user data in account
+        newAccount.getUser().setUser(newUser);
+        // Create dummy bills for each new user
+        Bill eBill = new ElectricityBill();
+        eBill.createBill();
+        newAccount.setBill(eBill);
+        Bill gBill = new GasBill();
+        gBill.createBill();
+        newAccount.setBill(gBill);
+        Bill wBill = new WaterBill();
+        wBill.createBill();
+        newAccount.setBill(wBill);
+        // Return the newly created account
+        return newAccount;
     }
 
     abstract public boolean verifyAccount(Account user, List<Account> list);
+
     abstract public Account adding(User user);
 
     public boolean verifyMobilNumber(User user, List<Account> list) {
@@ -144,9 +130,10 @@ class RegistrationBankAccount extends Registration {
         user.setbase(AccountNumber);
         return true;
     }
+
     @Override
     public Account adding(User user) {
-        Account temp = new BankAccount(user,0, "BankAccount");
+        Account temp = new BankAccount(user, 100, "BankAccount");
         return temp;
     }
 
@@ -154,6 +141,7 @@ class RegistrationBankAccount extends Registration {
 
 class RegistrationMobileWallet extends Registration {
     private char ch;
+
     @Override
     public boolean verifyAccount(Account user, List<Account> list) {
         String Mobile;
@@ -179,7 +167,7 @@ class RegistrationMobileWallet extends Registration {
             }
         }
         ch = Mobile.charAt(2);
-        if(ch != '1' && ch != '0'){
+        if (ch != '1' && ch != '0') {
             System.out.println("invalid provider!");
             return false;
         }
@@ -192,15 +180,17 @@ class RegistrationMobileWallet extends Registration {
     public boolean verifyMobilNumber(User user, List<Account> list) {
         return true;
     }
+
     @Override
     public Account adding(User user) {
         Account temp = null;
-        switch (ch){
+        switch (ch) {
             case '0':
-                temp = new VodafoneWallet(user , 0);
+                temp = new VodafoneWallet(user, 100);
                 break;
-            case '1': temp = new EtisalatWallet(user , 0);
-                      break;
+            case '1':
+                temp = new EtisalatWallet(user, 100);
+                break;
         }
         return temp;
     }
